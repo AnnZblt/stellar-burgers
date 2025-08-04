@@ -9,7 +9,7 @@ interface editorState {
   otherIngredients: TConstructorIngredient[];
 }
 
-const initialState: editorState = {
+export const initialState: editorState = {
   isLoading: false,
   error: null,
   buns: null,
