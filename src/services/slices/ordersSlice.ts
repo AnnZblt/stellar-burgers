@@ -39,9 +39,9 @@ export const makeOrderThunk = createAsyncThunk<
   }
 });
 
-// Получаем все заказы пользователя по номеру (по айди чи шо?)
-// в ответе массив типа TOrder, я хз что там приходит
-const getOrderByNumberThunk = createAsyncThunk<
+// Получаем все заказы пользователя по номеру
+// в ответе массив типа TOrderResponse
+export const getOrderByNumberThunk = createAsyncThunk<
   TOrderResponse,
   number,
   { rejectValue: string }
@@ -73,7 +73,7 @@ export interface ordersState {
   };
 }
 
-const initialState: ordersState = {
+export const initialState: ordersState = {
   ordersList: {
     isLoading: false,
     orders: [],

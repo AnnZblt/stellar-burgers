@@ -123,7 +123,7 @@ export interface UserState {
   error: string | null;
 }
 
-const initialState: UserState = {
+export const initialState: UserState = {
   isInit: false,
   isLoading: false,
   user: null,
@@ -243,6 +243,7 @@ export const userSlice = createSlice({
       })
       .addCase(logoutUserThunk.fulfilled, (state) => {
         state.isLoading = false;
+        state.isInit = false;
         state.user = null;
       });
   }

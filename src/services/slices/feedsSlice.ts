@@ -2,22 +2,19 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { TOrder } from '../../utils/types';
 import { getFeedsApi, TFeedsResponse } from '@api';
 
-//Получаем списка заказов (лента заказов)
+//Получение списка заказов (лента заказов)
 export const feedsListThunk = createAsyncThunk<
   TFeedsResponse,
   void,
   { rejectValue: string }
->(
-  'feeds/getFeeds', // имя санки
-  async (_, { rejectWithValue }) => {
-    try {
-      const feedsData = await getFeedsApi();
-      return feedsData;
-    } catch (err) {
-      return rejectWithValue('Ошибка загрузки ленты заказов');
-    }
+>('feeds/getFeeds', async (_, { rejectWithValue }) => {
+  try {
+    const feedsData = await getFeedsApi();
+    return feedsData;
+  } catch (err) {
+    return rejectWithValue('Ошибка загрузки ленты заказов');
   }
-);
+});
 
 export interface feedsState {
   isLoading: boolean;
@@ -27,16 +24,13 @@ export interface feedsState {
   totalToday: number;
 }
 
-const initialState: feedsState = {
+export const initialState: feedsState = {
   isLoading: false,
   error: null,
   orders: [],
   total: 0,
   totalToday: 0
 };
-
-/* При ф5 идет повторный запрос на сервер с обновлением истории заказов(ленты) */
-/* В компоненте нашлась кнопка, которой нет в макете, по клику на которую происходит повторный запрос заказов */
 
 export const feedsSlice = createSlice({
   name: 'feeds',
