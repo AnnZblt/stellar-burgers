@@ -8,7 +8,6 @@ import { useSelector } from '../../services/store';
 import { ingredientsIsLoading } from '../../services/slices/ingredientsSlice';
 
 export const ConstructorPage: FC = () => {
-  /** TODO: взять переменную из стора */
   const isIngredientsLoading = useSelector(ingredientsIsLoading);
 
   return (
@@ -31,8 +30,3 @@ export const ConstructorPage: FC = () => {
     </>
   );
 };
-
-/**
- * const isIngredientsLoading = useSelector();
- * <BurgerConstructor />
- */
